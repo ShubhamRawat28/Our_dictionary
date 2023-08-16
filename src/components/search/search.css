@@ -1,0 +1,16 @@
+.input-wrapper{
+    margin-top: 105px;
+    display: flex;
+    border-radius: 2px;
+    margin: 15px;
+    height: 30px;
+    width: 200px;
+    font-size: 18px;
+    background-color: #e3b2b2;
+}
+
+.search{
+    display: absolute;
+    left: 30px;
+    align-items: center;
+}
