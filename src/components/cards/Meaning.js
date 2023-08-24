@@ -12,9 +12,6 @@ const Meaning = (props) => {
           <Typography>{props.data[1].definitions[0].definition}</Typography>
           <Typography>{props.data[2].definitions[0].definition}</Typography>
         </CardContent>
-        <CardActions>
-          <Button>Learn More</Button>
-        </CardActions>
       </Card>
     </Box>
   )

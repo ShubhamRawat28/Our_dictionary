@@ -2,6 +2,8 @@ import "./search.css";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import Meaning from "../cards/Meaning";
+import Phonetics from "../cards/Phonetics";
+import Synoanto from "../cards/Synoanto";
 import { Container, Row, Col } from "react-grid-system";
 
 const Search = () => {
@@ -40,17 +42,14 @@ const Search = () => {
 			: <div className="content">
 				<Container>
 					<Row className="temp2">
-						<Col sm={12} md={6} lg={3}>
+						<Col sm={12} md={6} lg={4}>
 							<Meaning data = {fetchValue[0].meanings}/>
 						</Col>
-						<Col sm={12} md={6} lg={3}>
-							<div>Content 2</div>
+						<Col sm={12} md={6} lg={4}>
+							<Phonetics data = {fetchValue[0].phonetics}/>
 						</Col>
-						<Col sm={12} md={12} lg={3}>
-							<div className="temp">Content 3</div>
-						</Col>
-						<Col sm={12} md={12} lg={3}>
-							<div className="temp">Content 3</div>
+						<Col sm={12} md={12} lg={4}>
+							<synoanto data = {fetchValue[0].meanings}/>
 						</Col>
 					</Row>
 				</Container>
