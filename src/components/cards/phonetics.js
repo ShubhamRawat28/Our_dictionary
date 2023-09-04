@@ -1,22 +1,50 @@
-import { Box, Card, CardContent, Typography, CardActions, Button } from '@mui/material'
-import React from 'react'
+import { Box, Card, CardContent, Typography, IconButton } from "@mui/material";
+import { VolumeUp as VolumeUpIcon } from "@mui/icons-material";
+import React, { useState, useEffect } from "react";
 
-const Phonetics = (props) => {
-  return (
-    <Box>
-      <Card>
-        <CardContent>
-          <Typography>Meanings</Typography>
-          <Typography>{props.data[0].audio}</Typography>
-          <Typography>{props.data[0].text}</Typography>
-          <Typography>{props.data[1].audio}</Typography>
-          <Typography>{props.data[1].text}</Typography>
-          <Typography>{props.data[2].audio}</Typography>
-          <Typography>{props.data[2].text}</Typography>
-        </CardContent>
-      </Card>
-    </Box>
-  )
-}
+const Phonetics = ({ data }) => {
+	const [audioSources, setAudioSources] = useState([]);
+	const [playingIndex, setPlayingIndex] = useState(null);
+
+	useEffect(() => {
+		setAudioSources(data.map((item) => new Audio(item.audio)));
+	}, [data]);
+
+	const playSound = (index) => {
+		if (playingIndex !== null) {
+			audioSources[playingIndex].pause();
+			audioSources[playingIndex].currentTime = 0;
+		}
+
+		audioSources[index].play();
+		setPlayingIndex(index);
+
+		audioSources[index].onended = () => {
+			setPlayingIndex(null);
+		};
+	};
+
+	return (
+		<Box>
+			<Card>
+				<CardContent>
+					<Typography>Meanings</Typography>
+					{data.map((item, index) => (
+						<React.Fragment key={index}>
+							{item?.text && <Typography>{item.text}</Typography>}
+							{item?.audio && audioSources[index] && (
+								<IconButton onClick={() => playSound(index)}>
+									<VolumeUpIcon
+										color={playingIndex === index ? "primary" : "action"}
+									/>
+								</IconButton>
+							)}
+						</React.Fragment>
+					))}
+				</CardContent>
+			</Card>
+		</Box>
+	);
+};
 
 export default Phonetics;
