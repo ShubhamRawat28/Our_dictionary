@@ -49,7 +49,7 @@ const Search = () => {
 							<Phonetics data = {fetchValue[0].phonetics}/>
 						</Col>
 						<Col sm={12} md={12} lg={4}>
-							<synoanto data = {fetchValue[0].meanings}/>
+							<Synoanto data = {fetchValue[0].meanings}/>
 						</Col>
 					</Row>
 				</Container>
